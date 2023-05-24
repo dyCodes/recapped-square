@@ -1,5 +1,7 @@
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
+import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 
 const App = () => {
@@ -28,10 +30,22 @@ const App = () => {
 		},
 	});
 
+	const router = createBrowserRouter([
+		{
+			path: "/",
+			element: <Home />,
+			errorElement: <ErrorPage />,
+		},
+		// {
+		// 	path: "market",
+		// 	element: <Market />,
+		// },
+	]);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
-			<Home />
+			<RouterProvider router={router} />
 		</ThemeProvider>
 	);
 };
