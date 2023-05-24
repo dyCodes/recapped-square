@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+
+// IMPORTS
+@import "./config";
+@import "./base";
+@import "./layout";
+
+/*!----- COMPONENTS -------*/
+
+.app .card_button {
+	width: 100%;
+	justify-content: space-between;
+	padding: 16px 16px;
+	font-weight: bold;
+	border: 2px solid #111 !important;
+	// border-radius: 10px;
+}
+
+/*!----- PAGES -------*/
+#Home {
+	.header_card {
+		padding: 24px 16px;
+		background: #8976ff;
+		border: 2px solid #000000;
+		border-radius: 8px;
+
+		.intro_heading {
+			color: #fff;
+			font-weight: 400;
+			font-size: 26px;
+			line-height: 39px;
+			margin-bottom: 20px;
+		}
+	}
+
+	// #profile_section {
+	// }
+
+	.profile_header {
+		margin-bottom: 30px;
+		@include flex_space_between;
+
+		img {
+			margin-right: 12px;
+		}
+	}
+
+	// .stats {
+	// }
+}
+
+// #Settings {
+// 	.settingsItem {
+// 		padding-top: 12px;
+// 	}
+// }
+
+/*!----- MEDIA QUERIES -------*/
+@include media_screen_lg {
+}
