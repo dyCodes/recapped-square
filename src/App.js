@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import MarketPlace from "./pages/MarketPlace";
 import { AppProvider } from "./context/AppContext";
+import History from "./pages/History";
 
 const App = () => {
 	const router = createBrowserRouter([
@@ -14,8 +15,12 @@ const App = () => {
 			errorElement: <ErrorPage />,
 		},
 		{
-			path: "market-place",
+			path: "marketplace",
 			element: <MarketPlace />,
+		},
+		{
+			path: "transactions",
+			element: <History />,
 		},
 	]);
 

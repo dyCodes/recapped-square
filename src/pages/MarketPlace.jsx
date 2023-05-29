@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import {
 	Button,
 	Container,
@@ -10,13 +11,19 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Layout from "../components/Layout";
-import { useContext, useState } from "react";
 import ConfirmOrderModal from "../components/ConfirmOrderModal";
 import { AppContext } from "../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 const MarketPlace = () => {
 	const { marketPlaceList } = useContext(AppContext);
 	const [confirmModal, setConfirmModal] = useState({ status: false, id: null });
+	const navigate = useNavigate();
+
+	// Scroll to top on page load
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	const handleConfirm = ({ id }) => {
 		setConfirmModal({ status: true, id: id });
@@ -29,7 +36,7 @@ const MarketPlace = () => {
 	const handleDonate = () => {
 		console.log("Donated");
 		// Go to transactions page
-		window.location.href = "/transactions";
+		navigate("/transactions");
 	};
 
 	return (

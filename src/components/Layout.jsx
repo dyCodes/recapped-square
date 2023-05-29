@@ -20,7 +20,7 @@ const Layout = ({ page, title, children }) => {
 						<HomeOutlinedIcon className="navIcon" />
 					</Link>
 
-					<Link to="/market-place" component={NavLink} underline="none">
+					<Link to="/marketplace" component={NavLink} underline="none">
 						<StorefrontOutlinedIcon className="navIcon" />
 					</Link>
 

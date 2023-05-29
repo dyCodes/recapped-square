@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Card, Container, Divider, Typography } from "@mui/material";
 import Layout from "../components/Layout";
 import { ArrowForward } from "@mui/icons-material";
 import ProfileSection from "../components/ProfileSection";
+import { Link } from "react-router-dom";
 
 const Home = () => {
+	// Scroll to top on page load
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<Layout page="Home">
 			<Container maxWidth="sm" className="container">
@@ -13,12 +19,24 @@ const Home = () => {
 						Recycle bottles before they get on the streets while fulfilling your green house duties
 					</Typography>
 
-					<Button variant="outlined" size="large" className="card_button" endIcon={<ArrowForward />}>
+					<Button
+						variant="outlined"
+						size="large"
+						className="card_button"
+						to="/marketplace"
+						component={Link}
+						endIcon={<ArrowForward />}>
 						Donate & Buy bottles
 					</Button>
 				</Card>
 
-				<Button variant="outlined" size="large" className="card_button" endIcon={<ArrowForward />}>
+				<Button
+					variant="outlined"
+					size="large"
+					className="card_button"
+					to="/transactions"
+					component={Link}
+					endIcon={<ArrowForward />}>
 					<div>
 						Transaction list
 						<span className="button_subtext">Checkout previous transactions</span>
