@@ -4,7 +4,6 @@ import {
 	Dialog,
 	DialogActions,
 	DialogContent,
-	DialogTitle,
 	Divider,
 	Grid,
 	Input,
@@ -26,15 +25,10 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose }) => {
 
 	return (
 		<Dialog open={confirmModal.status} onClose={handleClose} fullWidth>
-			<DialogTitle>Confirm Order</DialogTitle>
-
-			<Divider />
-
 			<DialogContent>
-				<Typography id="input-slider" gutterBottom>
-					Quantity of bottles to donate
+				<Typography variant="h6" component="h3" fontWeight={500} mb={1.28} align="center">
+					Quantity of bottles
 				</Typography>
-
 				<Grid container spacing={2} alignItems="center">
 					<Grid item xs>
 						<Slider
@@ -60,26 +54,14 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose }) => {
 					</Grid>
 				</Grid>
 
-				<Divider sx={{ my: 2.5 }} />
-
-				<div className="center_content">
-					<Typography variant="h6" component="h3" fontWeight={500} mb={1}>
-						Sustainability Points
-					</Typography>
-
+				<ModalContent title="Sustainability Points">
 					<div>
 						<span style={{ fontSize: "24px", fontWeight: "bold" }}>{value / 10} </span>
 						<span style={{ color: "gray" }}>Potential gain</span>
 					</div>
-				</div>
+				</ModalContent>
 
-				<Divider sx={{ my: 2.5 }} />
-
-				<div className="center_content">
-					<Typography variant="h6" component="h3" fontWeight={500} mb={1}>
-						Collection Pickup
-					</Typography>
-
+				<ModalContent title="Collection Pickup">
 					<div>
 						<span style={{ color: "gray" }}>12B thistle street, Amen estate, Ajah, Lagos </span>
 						<div className="_flex_center" style={{ marginTop: "8px" }}>
@@ -87,16 +69,35 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose }) => {
 							<span style={{ fontSize: "15px", fontWeight: 500 }}>27th June 2023</span>
 						</div>
 					</div>
-				</div>
+				</ModalContent>
 			</DialogContent>
 
 			<Divider />
 
-			<DialogActions>
-				<Button onClick={handleClose}>Cancel</Button>
-				<Button onClick={handleDonate}>Confirm</Button>
+			<DialogActions sx={{ py: 2.5, px: 2, justifyContent: "center" }}>
+				<Button variant="outlined" fullWidth onClick={handleClose}>
+					Cancel
+				</Button>
+				<Button variant="contained" fullWidth onClick={handleDonate}>
+					Confirm
+				</Button>
 			</DialogActions>
 		</Dialog>
+	);
+};
+
+const ModalContent = ({ title, children }) => {
+	return (
+		<>
+			<Divider sx={{ my: 2.5 }} />
+			<div className="center_content">
+				<Typography variant="h6" component="h3" fontWeight={500} mb={1.2}>
+					{title}
+				</Typography>
+
+				{children}
+			</div>
+		</>
 	);
 };
 

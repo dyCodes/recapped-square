@@ -9,11 +9,20 @@
 
 .app .card_button {
 	width: 100%;
+	text-align: left;
 	justify-content: space-between;
 	padding: 16px 16px;
 	font-weight: bold;
 	border: 2px solid #111 !important;
 	// border-radius: 10px;
+
+	.button_subtext {
+		display: block;
+		color: gray;
+		font-size: 14px;
+		font-weight: 400;
+		text-transform: initial;
+	}
 }
 
 /*!----- PAGES -------*/
