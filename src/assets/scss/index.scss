@@ -33,9 +33,6 @@
 		}
 	}
 
-	// #profile_section {
-	// }
-
 	.profile_header {
 		margin-bottom: 30px;
 		@include flex_space_between;
@@ -44,9 +41,29 @@
 			margin-right: 12px;
 		}
 	}
+}
 
-	// .stats {
-	// }
+#MarketPlace {
+	form #searchInput {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}
+
+	.listItem {
+		@include flex_space_between;
+
+		._name {
+			font-size: 18px;
+			font-weight: 500;
+			margin: 0;
+			margin-bottom: 3px;
+		}
+		span {
+			display: block;
+			font-size: 14px;
+			color: gray;
+		}
+	}
 }
 
 // #Settings {

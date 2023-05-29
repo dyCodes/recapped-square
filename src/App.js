@@ -1,8 +1,9 @@
+import "./index.css";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
-import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
+import ErrorPage from "./pages/ErrorPage";
+import MarketPlace from "./pages/MarketPlace";
 
 const App = () => {
 	const theme = createTheme({
@@ -36,10 +37,10 @@ const App = () => {
 			element: <Home />,
 			errorElement: <ErrorPage />,
 		},
-		// {
-		// 	path: "market",
-		// 	element: <Market />,
-		// },
+		{
+			path: "market-place",
+			element: <MarketPlace />,
+		},
 	]);
 
 	return (

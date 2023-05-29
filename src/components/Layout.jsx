@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Link, Typography } from "@mui/material";
+import { Container, Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
@@ -12,14 +12,6 @@ const Layout = ({ page, title, children }) => {
 
 	return (
 		<div id={page} className="app">
-			{/* {title && (
-				<header>
-					<Typography variant="h5" component="h1" fontWeight="bold">
-						{title}
-					</Typography>
-				</header>
-			)} */}
-
 			<main>{children}</main>
 
 			<div className="footer_navbar">
@@ -28,7 +20,7 @@ const Layout = ({ page, title, children }) => {
 						<HomeOutlinedIcon className="navIcon" />
 					</Link>
 
-					<Link to="/market" component={NavLink} underline="none">
+					<Link to="/market-place" component={NavLink} underline="none">
 						<StorefrontOutlinedIcon className="navIcon" />
 					</Link>
 
