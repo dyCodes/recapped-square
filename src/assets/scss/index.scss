@@ -6,7 +6,6 @@
 @import "./layout";
 
 /*!----- COMPONENTS -------*/
-
 .app .card_button {
 	width: 100%;
 	text-align: left;
@@ -74,12 +73,6 @@
 		}
 	}
 }
-
-// #Settings {
-// 	.settingsItem {
-// 		padding-top: 12px;
-// 	}
-// }
 
 /*!----- MEDIA QUERIES -------*/
 @include media_screen_lg {
