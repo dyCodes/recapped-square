@@ -16,8 +16,9 @@ import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 
 const MarketPlace = () => {
-	const { marketPlaceList } = useContext(AppContext);
+	const { marketPlaceList, setHistoryList } = useContext(AppContext);
 	const [confirmModal, setConfirmModal] = useState({ status: false, id: null });
+	const [value, setValue] = useState(50);
 	const navigate = useNavigate();
 
 	// Scroll to top on page load
@@ -25,18 +26,28 @@ const MarketPlace = () => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	const handleConfirm = ({ id }) => {
+	const handleConfirm = (id) => {
 		setConfirmModal({ status: true, id: id });
 	};
 
 	const handleClose = () => {
 		setConfirmModal({ status: false, id: null });
+		setValue(50);
 	};
 
 	const handleDonate = () => {
-		console.log("Donated");
-		// Go to transactions page
-		navigate("/transactions");
+		const data = marketPlaceList.find((item) => item.id === confirmModal.id);
+		// Create new history data
+		const newHistoryData = {
+			...data,
+			quantity: value,
+			points: value / 10,
+			status: "Successful",
+			date: new Date().toLocaleDateString(),
+		};
+
+		setHistoryList((prev) => [newHistoryData, ...prev]);
+		navigate("/transactions", { state: newHistoryData });
 	};
 
 	return (
@@ -46,7 +57,7 @@ const MarketPlace = () => {
 					Market Place
 				</Typography>
 
-				<form className="searchForm">
+				<div className="searchForm">
 					<TextField
 						fullWidth
 						id="searchInput"
@@ -61,7 +72,7 @@ const MarketPlace = () => {
 							),
 						}}
 					/>
-				</form>
+				</div>
 
 				<List sx={{ width: "100%", mt: 2 }}>
 					{marketPlaceList.map((item, index) => (
@@ -75,6 +86,8 @@ const MarketPlace = () => {
 					confirmModal={confirmModal}
 					handleDonate={handleDonate}
 					handleClose={handleClose}
+					value={value}
+					setValue={setValue}
 				/>
 			)}
 		</Layout>

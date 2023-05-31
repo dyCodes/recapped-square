@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	Button,
 	Dialog,
@@ -12,9 +11,7 @@ import {
 } from "@mui/material";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 
-const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose }) => {
-	const [value, setValue] = useState(50);
-
+const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose, value, setValue }) => {
 	const handleSliderChange = (e, newValue) => {
 		setValue(newValue);
 	};

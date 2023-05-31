@@ -47,23 +47,26 @@ const HistoryData = [
 	{
 		id: 1,
 		name: "Alex Okekan",
-		status: "successful",
+		status: "Successful",
 		quantity: "120",
 		points: 12,
+		date: "5/27/2023",
 	},
 	{
 		id: 2,
 		name: "Marie Abbott",
-		status: "successful",
+		status: "Successful",
 		quantity: "50",
 		points: 5,
+		date: "5/30/2023",
 	},
 	{
 		id: 3,
 		name: "Bill Harrison",
-		status: "successful",
+		status: "Denied ",
 		quantity: "120",
 		points: 12,
+		date: "5/21/2023",
 	},
 ];
 

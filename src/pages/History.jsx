@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
-import { Container, Divider, List, ListItem, Typography } from "@mui/material";
+import { Container, Divider, InputAdornment, List, ListItem, TextField, Typography } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import Layout from "../components/Layout";
 import { AppContext } from "../context/AppContext";
 
@@ -18,22 +19,49 @@ const History = () => {
 					Transaction list
 				</Typography>
 
-				{/* <List sx={{ width: "100%", mt: 2 }}>
+				<div className="searchForm">
+					<TextField
+						fullWidth
+						id="searchInput"
+						size="small"
+						placeholder="Search by name"
+						type="search"
+						InputProps={{
+							startAdornment: (
+								<InputAdornment position="start">
+									<SearchIcon />
+								</InputAdornment>
+							),
+						}}
+					/>
+				</div>
+
+				<List sx={{ width: "100%", mt: 2 }}>
 					{HistoryList.map((item, index) => (
-						<>
-							<ListItem className="listItem">
-								<div>
-									<h5 className="_name">{item.name}</h5>
-									<span style={{ fontWeight: 500, color: "#333" }}>{item.quantity} bottles donated</span>
-									<span>Status: {item.status}</span>
-								</div>
-							</ListItem>
-							<Divider />
-						</>
+						<HistoryListItem key={index} item={item} />
 					))}
-				</List> */}
+				</List>
 			</Container>
 		</Layout>
+	);
+};
+
+const HistoryListItem = ({ item }) => {
+	return (
+		<>
+			<ListItem className="listItem">
+				<div>
+					<h5 className="_name">To: {item.name}</h5>
+					<span style={{ fontWeight: 500, marginBottom: "2px" }}>{item.quantity} bottles donated</span>
+					<span style={{ fontWeight: 400, color: "#000" }}>{item.points} S.points</span>
+				</div>
+				<div style={{ textAlign: "right" }}>
+					<h6 className="_date">{item.date}</h6>
+					<span style={{ color: item.status === "Successful" ? "#4CAF50" : "#F44336" }}>{item.status}</span>
+				</div>
+			</ListItem>
+			<Divider />
+		</>
 	);
 };
 

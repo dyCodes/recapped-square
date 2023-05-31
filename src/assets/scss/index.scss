@@ -23,6 +23,10 @@
 		text-transform: initial;
 	}
 }
+.searchForm #searchInput {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 
 /*!----- PAGES -------*/
 #Home {
@@ -52,11 +56,6 @@
 }
 
 #MarketPlace {
-	form #searchInput {
-		padding-top: 15px;
-		padding-bottom: 15px;
-	}
-
 	.listItem {
 		@include flex_space_between;
 
@@ -64,6 +63,31 @@
 			font-size: 18px;
 			font-weight: 500;
 			margin: 0;
+			margin-bottom: 3px;
+		}
+		span {
+			display: block;
+			font-size: 14px;
+			color: gray;
+		}
+	}
+}
+
+#History {
+	.listItem {
+		@include flex_space_between;
+
+		._name {
+			font-size: 18px;
+			font-weight: 500;
+			margin: 0;
+			margin-bottom: 3px;
+		}
+		._date {
+			color: gray;
+			font-size: 15px;
+			margin: 0;
+			font-weight: 500;
 			margin-bottom: 3px;
 		}
 		span {
