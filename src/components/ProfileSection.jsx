@@ -19,12 +19,12 @@ const ProfileSection = () => {
 			<div className="stats">
 				<div className="stat">
 					<p className="_mb0">Total bottles donated</p>
-					<b>256 bottles</b>
+					<b>625 bottles</b>
 				</div>
 
 				<div className="stat">
 					<p className="_mb0">Total sustainability points</p>
-					<b>53 points</b>
+					<b>62.5 points</b>
 				</div>
 
 				<div className="stat">

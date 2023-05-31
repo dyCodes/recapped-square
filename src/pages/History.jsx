@@ -57,7 +57,13 @@ const HistoryListItem = ({ item }) => {
 				</div>
 				<div style={{ textAlign: "right" }}>
 					<h6 className="_date">{item.date}</h6>
-					<span style={{ color: item.status === "Successful" ? "#4CAF50" : "#F44336" }}>{item.status}</span>
+					<span
+						style={{
+							color:
+								item.status === "Pending" ? "#f57c00" : item.status === "Successful" ? "#4caf50" : "#f44336",
+						}}>
+						{item.status}
+					</span>
 				</div>
 			</ListItem>
 			<Divider />

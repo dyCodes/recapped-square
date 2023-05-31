@@ -37,13 +37,17 @@ const MarketPlace = () => {
 
 	const handleDonate = () => {
 		const data = marketPlaceList.find((item) => item.id === confirmModal.id);
+		// Get delivery date
+		const dateCopy = new Date();
+		dateCopy.setDate(dateCopy.getDate() + ((7 - dateCopy.getDay() + 6) % 7));
+
 		// Create new history data
 		const newHistoryData = {
 			...data,
 			quantity: value,
 			points: value / 10,
-			status: "Successful",
-			date: new Date().toLocaleDateString(),
+			status: "Pending",
+			date: dateCopy.toLocaleDateString(),
 		};
 
 		setHistoryList((prev) => [newHistoryData, ...prev]);

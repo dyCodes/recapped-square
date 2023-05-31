@@ -20,6 +20,19 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose, value, set
 		setValue(e.target.value === "" ? "" : Number(e.target.value));
 	};
 
+	const getDeliveryDate = () => {
+		// Get next saturday date
+		const dateCopy = new Date();
+		dateCopy.setDate(dateCopy.getDate() + ((7 - dateCopy.getDay() + 6) % 7));
+		const deliveryDate = dateCopy.toLocaleDateString("en", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+		});
+		return deliveryDate;
+	};
+
 	return (
 		<Dialog open={confirmModal.status} onClose={handleClose} fullWidth>
 			<DialogContent>
@@ -63,7 +76,7 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose, value, set
 						<span style={{ color: "gray" }}>12B thistle street, Amen estate, Ajah, Lagos </span>
 						<div className="_flex_center" style={{ marginTop: "8px" }}>
 							<CalendarMonthOutlinedIcon fontSize="small" sx={{ mr: "6px" }} />
-							<span style={{ fontSize: "15px", fontWeight: 500 }}>27th June 2023</span>
+							<span style={{ fontSize: "15px", fontWeight: 500 }}>{getDeliveryDate()}</span>
 						</div>
 					</div>
 				</ModalContent>
