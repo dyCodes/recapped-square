@@ -17,7 +17,7 @@ const App = () => {
 			errorElement: <ErrorPage />,
 		},
 		{
-			path: "sign-up",
+			path: "signup",
 			element: <SignUp />,
 		},
 		{
