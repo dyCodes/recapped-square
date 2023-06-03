@@ -103,13 +103,14 @@
 	margin: 35px 0;
 
 	#logo {
+		display: block;
+		color: #111;
+		text-decoration: none;
 		margin-bottom: 36px;
 	}
 
 	.signup_input {
 		margin-bottom: 18px;
-		// padding-top: 15px;
-		// padding-bottom: 15px;
 	}
 
 	img {

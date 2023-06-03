@@ -1,19 +1,50 @@
-import { Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import { Alert, Button, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import subscription from "../assets/img/subscription-details.svg";
 
 const SubscribeForm = ({ userData }) => {
-	const handleSubscribe = (e) => {
+	const [paymentData, setPaymentData] = useState({ cardNo: "", expirationDate: "", securityCode: "" });
+	const [loading, setLoading] = useState(false);
+	const [status, setStatus] = useState({ type: "", message: "" });
+	const navigate = useNavigate();
+
+	const handleSubscribe = async (e) => {
 		e.preventDefault();
+		setLoading(true);
+		setStatus({ type: "", message: "" });
 
-		// Go to dashboard
-		window.location.href = "/";
+		if (paymentData && paymentData.securityCode) {
+			try {
+				const userID = localStorage.getItem("userID");
+				const url = "https://recapped-square-api.onrender.com/api/subscribe/" + userID;
+				const response = await fetch(url, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(userData),
+				});
+				const data = await response.json();
 
-		// Handle subscription
-		// fetch("https://recapped-square-api.onrender.com/api/subscription-plan")
-		// 	.then((res) => res.json())
-		// 	.then((data) => console.log(data))
-		// 	.catch((err) => console.log(err));
+				if (!data.errors) {
+					userData.password = null;
+					localStorage.setItem("userData", JSON.stringify({ ...userData, status: data.status }));
+					setStatus({ type: "success", message: "Subscription successful! Redirecting..." });
+
+					// Redirect to home page
+					setTimeout(() => {
+						navigate("/");
+					}, 3000);
+				} else {
+					console.log(data);
+					setStatus({ type: "error", message: data?.errors[0].detail });
+				}
+				setLoading(false);
+			} catch (error) {
+				setLoading(false);
+				console.log(error);
+				setStatus({ type: "error", message: "Something went wrong! Please try again." });
+			}
+		}
 	};
 
 	return (
@@ -34,6 +65,8 @@ const SubscribeForm = ({ userData }) => {
 					fullWidth
 					sx={{ mb: 2 }}
 					inputMode="numeric"
+					value={paymentData.cardNo || ""}
+					onChange={(e) => setPaymentData({ ...paymentData, cardNo: e.target.value })}
 					required
 				/>
 				<div className="_flex">
@@ -45,6 +78,8 @@ const SubscribeForm = ({ userData }) => {
 						fullWidth
 						sx={{ mb: 2 }}
 						inputMode="numeric"
+						value={paymentData.expirationDate || ""}
+						onChange={(e) => setPaymentData({ ...paymentData, expirationDate: e.target.value })}
 						required
 					/>
 					<span style={{ padding: "6px" }}></span>
@@ -55,14 +90,18 @@ const SubscribeForm = ({ userData }) => {
 						fullWidth
 						sx={{ mb: 2 }}
 						inputMode="numeric"
+						value={paymentData.securityCode || ""}
+						onChange={(e) => setPaymentData({ ...paymentData, securityCode: e.target.value })}
 						required
 					/>
 				</div>
 			</div>
 
 			<Button variant="contained" size="large" fullWidth sx={{ my: 2.5, py: 1.5 }} type="submit">
-				Confirm
+				{loading ? "Loading..." : "Confirm"}
 			</Button>
+
+			{status.type && <Alert severity={status.type}>{status.message}</Alert>}
 		</form>
 	);
 };

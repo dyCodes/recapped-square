@@ -12,6 +12,8 @@ import {
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose, value, setValue }) => {
+	const userData = JSON.parse(localStorage.getItem("userData"));
+
 	const handleSliderChange = (e, newValue) => {
 		setValue(newValue);
 	};
@@ -23,7 +25,7 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose, value, set
 	const getDeliveryDate = () => {
 		// Get next saturday date
 		const dateCopy = new Date();
-		dateCopy.setDate(dateCopy.getDate() + ((7 - dateCopy.getDay() + 6) % 7));
+		dateCopy.setDate(dateCopy.getDate() + ((7 + 6 - dateCopy.getDay() - 1) % 7) + 1);
 		const deliveryDate = dateCopy.toLocaleDateString("en", {
 			weekday: "long",
 			year: "numeric",
@@ -73,7 +75,7 @@ const ConfirmOrderModal = ({ confirmModal, handleDonate, handleClose, value, set
 
 				<ModalContent title="Collection Pickup">
 					<div>
-						<span style={{ color: "gray" }}>12B thistle street, Amen estate, Ajah, Lagos </span>
+						<span style={{ color: "gray" }}>{userData.address}</span>
 						<div className="_flex_center" style={{ marginTop: "8px" }}>
 							<CalendarMonthOutlinedIcon fontSize="small" sx={{ mr: "6px" }} />
 							<span style={{ fontSize: "15px", fontWeight: 500 }}>{getDeliveryDate()}</span>

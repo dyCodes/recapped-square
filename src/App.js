@@ -24,6 +24,7 @@ const App = () => {
 						<Route path="settings" element={<Settings />} />
 					</Route>
 
+					<Route path="logout" element={<Logout />} />
 					<Route path="*" element={<ErrorPage />} />
 				</Routes>
 			</BrowserRouter>
@@ -33,8 +34,13 @@ const App = () => {
 
 const ProtectRoutes = () => {
 	const isLoggedIn = localStorage.getItem("userID");
-
 	return isLoggedIn ? <Outlet /> : <Navigate to="/signup" replace={true} />;
+};
+
+const Logout = () => {
+	localStorage.removeItem("userID");
+	localStorage.removeItem("userData");
+	return <Navigate to="/signup" replace={true} />;
 };
 
 export default App;

@@ -3,12 +3,14 @@ import { Button } from "@mui/material";
 import profilePhoto from "../assets/img/profile.png";
 
 const ProfileSection = () => {
+	const userData = JSON.parse(localStorage.getItem("userData"));
+
 	return (
 		<div className="profile_section">
 			<div className="profile_header">
 				<div className="_flex">
 					<img src={profilePhoto} alt="Current User" width="70px" />
-					<h3>Judy Curie</h3>
+					<h3 style={{ marginRight: "4px" }}>{userData.name}</h3>
 				</div>
 
 				<Button variant="outlined" size="medium" endIcon={<ArrowForward />}>
