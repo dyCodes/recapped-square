@@ -1,45 +1,40 @@
 import "./index.css";
 import { CssBaseline } from "@mui/material";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import MarketPlace from "./pages/MarketPlace";
-import { AppProvider } from "./context/AppContext";
 import History from "./pages/History";
 import Settings from "./pages/Settings";
 import SignUp from "./pages/SignUp";
+import { AppProvider } from "./context/AppContext";
 
 const App = () => {
-	const router = createBrowserRouter([
-		{
-			path: "/",
-			element: <Home />,
-			errorElement: <ErrorPage />,
-		},
-		{
-			path: "signup",
-			element: <SignUp />,
-		},
-		{
-			path: "marketplace",
-			element: <MarketPlace />,
-		},
-		{
-			path: "transactions",
-			element: <History />,
-		},
-		{
-			path: "settings",
-			element: <Settings />,
-		},
-	]);
-
 	return (
 		<AppProvider>
 			<CssBaseline />
-			<RouterProvider router={router} />
+			<BrowserRouter>
+				<Routes>
+					<Route path="signup" element={<SignUp />} />
+
+					<Route element={<ProtectRoutes />}>
+						<Route path="/" element={<Home />} />
+						<Route path="marketplace" element={<MarketPlace />} />
+						<Route path="transactions" element={<History />} />
+						<Route path="settings" element={<Settings />} />
+					</Route>
+
+					<Route path="*" element={<ErrorPage />} />
+				</Routes>
+			</BrowserRouter>
 		</AppProvider>
 	);
+};
+
+const ProtectRoutes = () => {
+	const isLoggedIn = localStorage.getItem("userID");
+
+	return isLoggedIn ? <Outlet /> : <Navigate to="/signup" replace={true} />;
 };
 
 export default App;
