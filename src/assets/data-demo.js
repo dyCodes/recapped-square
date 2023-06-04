@@ -96,7 +96,7 @@ const HistoryData = [
 		name: "Ngozi Nke",
 		status: "Cancelled",
 		quantity: "200",
-		points: 20,
+		points: 0,
 		date: "5/08/2023",
 	},
 	{
@@ -104,7 +104,7 @@ const HistoryData = [
 		name: "Bill Harrison",
 		status: "Cancelled",
 		quantity: "95",
-		points: 9.5,
+		points: 0,
 		date: "5/21/2023",
 	},
 ];
